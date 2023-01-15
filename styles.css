@@ -25,3 +25,17 @@ h1 {
     color: rgb(235,229,213);
     text-align: justify;
 }
+
+#snakeCanvas {
+    width: 600px;
+    height: 600px;
+    display: block;
+    position: absolute;
+    border: 5px solid black;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+}

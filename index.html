@@ -3,28 +3,22 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Snake Game</title>
+       
+        <title>Snake Game by Meroni</title>
+        
         <link rel="stylesheet" href="styles.css">
+        
         <script src="snake.js" defer></script>
+           
+        <form method="GET" action="results.html"> 
+            <input type="submit" id="createaccount-button" value="Create Account">
+       </form>
+       
     </head>
-  <header>   <form method="GET" action="results.html">
-    <!--Set action and method properties-->
+  
 
-
-    <!--Submit button to create account-->
-    <div>
-        <input type="submit" id="createaccount-button" value="Create Account">
-    </div>
-
-</form>
-</header>
- <body>
-    <main>
-
-        <canvas id="snakegame" width="600px" height="400px"
-        style="border:2px solid black"></canvas>
-
-    </main>
+ <body onload="init();">
+    <canvas id="snakeCanvas"></canvas>
       
 
 </body>
