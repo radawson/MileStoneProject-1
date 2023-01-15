@@ -2,9 +2,9 @@
 //let canvas;
 
 
-let head;
+let snakeHead;
 let mouse;
-let ball;
+let snakeBody;
 
 let dots;
 let mouse_x;
@@ -32,3 +32,29 @@ const down_key = 40;
 //putting snake joint coordinates in an array
 let x = snakeJoints(all_dots);
 let y = snakeJoints(all_dots);
+
+
+function init() {
+    canvas = document.getElementById("snakeCanvas");
+    // to make a 2D game use getContext 
+    //https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript
+    ctx = canvas.getContext("2d");
+
+    loadImages();
+    createSnake();
+    locateMouse();
+    //maybe add delay here
+
+}
+
+function loadImages() {
+    snakeHead = newImage();
+    snakeHead.src = "pseudocode/Assets/snakehead.png";
+
+    snakeBody = newImage();
+    snakeBody.src = "pseudocode/Assets/snakebody.png";
+
+    mouse = newImage();
+    mouse.src = "pseudocode/Assets/mouserunning.png"
+    
+}
