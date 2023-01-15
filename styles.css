@@ -1,3 +1,27 @@
 body {
     background-color: darkseagreen;
 }
+
+fieldset {
+    text-align: center;
+    border-radius: 10em;
+    border-color: rgb(103, 98, 98);
+    display: inline-block;
+}
+
+#createaccount-button , #submit-button {
+    border-radius: 1.5em;
+    background-color: rgb(227,222,209);
+
+}
+
+#firstname, #lastname, #username, #password {
+    border-radius: 1em;
+    border-width: 0.1em;
+    text-align: center;
+}
+
+h1 {
+    color: rgb(235,229,213);
+    text-align: justify;
+}
