@@ -43,18 +43,19 @@ function init() {
     loadImages();
     createSnake();
     locateMouse();
-    //maybe add delay here
+    // set a timeout to start animation
 
 }
 
 function loadImages() {
     snakeHead = newImage();
-    snakeHead.src = "pseudocode/Assets/snakehead.png";
+    snakeHead.src = "Assets/snakehead.png";
 
     snakeBody = newImage();
-    snakeBody.src = "pseudocode/Assets/snakebody.png";
+    snakeBody.src = "Assets/snakebody.png";
 
     mouse = newImage();
-    mouse.src = "pseudocode/Assets/mouserunning.png"
+    mouse.src = "Assets/mouserunning.png"
     
 }
+
