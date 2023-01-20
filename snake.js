@@ -34,5 +34,9 @@
 
 // //window.reload
 
+//DEFINE NEW VARIABLES snake, mouse, score board, etc
+
+
+let scoreBoard = document.querySelector(".scoreBoard")
 let grid = document.querySelector(".grid");
 let flash = document.querySelector(".restartGame")
