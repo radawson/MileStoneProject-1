@@ -53,12 +53,11 @@ h1 {
     height: 50px;
     align-items: center;
     justify-content: center;
-    
 
 }
 
 .snake {
-    background-color: rgb(242, 15, 128);
+    background-color: rgb(238, 15, 127);
 }
 .mouse {
     background-color: rgb(156, 106, 56);
