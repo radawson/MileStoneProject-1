@@ -81,3 +81,49 @@ console.log(
 
 //attatch image to snake 4 w/ constructor
 
+class Mouse {
+    constructor(name, positionX, positionY) {
+        this.name = name;
+        this.positionX = positionX
+        this.positionY = positionY
+    }
+
+    sayHi() {
+        alert(this.name);
+    }
+
+    newSnake() {
+        alert(this.positionX, positionY)
+    }
+}
+
+let mouse = new Mouse("Queso", between(0,600), between(0,600))
+mouse.sayHi()
+
+let mouseTwo = new Mouse("Fresco", between (0,600), between(0,600))
+
+
+ let img = new Image ();
+ let div = document.getElementById("snakehead");
+
+img.onload = function() {
+alert("image is loaded")
+ };
+ img.src = "dist/snakehead.png"
+
+
+
+// let img = new Image ();
+// let div = document.getElementById("snakebody");
+
+// img.onload = function(){
+//     alert("image is loaded")
+// };
+// img.src = "dist/snakebody.png"
+
+
+let snakeHead = [
+    {
+        i
+    }
+]
