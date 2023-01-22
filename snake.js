@@ -54,7 +54,7 @@ class Snake {
 
 
 // Usage:
-let snake = new Snake("SuperLarky", between(10,100),between(10,100), "dist/fullsnake.png");
+let snake = new Snake("SuperLarky", between(100,550),between(100,550), "dist/snakegame.png");
 
 function between(x, y) {
     return Math.floor(
@@ -87,10 +87,11 @@ class Mouse {
     
 }
 
-let mouse = new Mouse("Queso", between(0,600), between(0,600), "dist/mouse-gray-rightSMALL.png")
-mouse.sayHi()
+let mouse = new Mouse("Queso", between(100,550),between(100,550), "dist/mouse-gray-rightSMALL.png")
 
-let mouseTwo = new Mouse("Fresco", between (0,600), between(0,600), "dist/mouse-gray-rightSMALL.png")
+
+
+let mouseTwo = new Mouse("Fresco",between(100,550),between(100,550), "dist/mouse-gray-rightSMALL.png")
 
 function newImage(url, left, bottom) {
     let object = document.createElement('img')
