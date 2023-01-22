@@ -53,11 +53,15 @@ class Snake {
         fullsnake.src = "dist/fullsnake.png";
         
     }
-       
-    
+
+    window.addEventListener("load", event => {
+        let img =document.querySelector("fullsnake");
+
+        alert("image is loaded")
+
+    });
 
 }
-
 
 
 // Usage:
