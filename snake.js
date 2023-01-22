@@ -47,9 +47,18 @@ class Snake {
     newSnake() {
         alert(this.positionX, positionY)
     }
-
+ 
+    loadImages() {
+        snake = new Image();
+        fullsnake.src = "dist/fullsnake.png";
+        
+    }
+       
+    
 
 }
+
+
 
 // Usage:
 let snake = new Snake("John");
@@ -95,6 +104,17 @@ class Mouse {
     newSnake() {
         alert(this.positionX, positionY)
     }
+
+    loadImages() {
+
+        mouseB = new Image() 
+            brownmouse.src = "dist/mouse-brown-left.png";
+        
+        mouseG = new Image() 
+            graymouse.src = "dist/mouse-gray-right.png";
+
+        
+    }
 }
 
 let mouse = new Mouse("Queso", between(0,600), between(0,600))
@@ -103,27 +123,27 @@ mouse.sayHi()
 let mouseTwo = new Mouse("Fresco", between (0,600), between(0,600))
 
 
- let img = new Image ();
- let div = document.getElementById("snakehead");
+//  let img = new Image ();
+//  let div = document.getElementById("snakehead");
 
-img.onload = function() {
-alert("image is loaded")
- };
- img.src = "dist/snakehead.png"
-
-
-
-// let img = new Image ();
-// let div = document.getElementById("snakebody");
-
-// img.onload = function(){
-//     alert("image is loaded")
-// };
-// img.src = "dist/snakebody.png"
+// img.onload = function() {
+// alert("image is loaded")
+//  };
+//  img.src = "dist/snakehead.png"
 
 
-let snakeHead = [
-    {
-        i
-    }
-]
+
+// // let img = new Image ();
+// // let div = document.getElementById("snakebody");
+
+// // img.onload = function(){
+// //     alert("image is loaded")
+// // };
+// // img.src = "dist/snakebody.png"
+
+
+// let snakeHead = [
+//     {
+        
+//     }
+// ]
