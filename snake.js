@@ -10,17 +10,13 @@ let newGame = document.getElementById("newGame");
 
 
 //make our grid 10 by 10
-
 let width = 10;
 
 // how to track score
 let score = 0;
 
 //how to track mice intake (point accumulation)
-let mouseIndex = 0;
-
-// how fast should the game go? Snake move? 
-let speed = 0.5;
+let mouseIndex = 0; 
 
 
 //write a function that listens (eventListener) for clicks. Specifically when someone clicks "StartGame"
@@ -39,6 +35,8 @@ class Snake {
         this.positionY = positionY;
         this.url = url;
         this.audio = audio;
+        this.width = 67;
+        this.height = 80;
     }
 
 
@@ -73,6 +71,8 @@ class Mouse {
         this.positionX = positionX;
         this.positionY = positionY;
         this.url = url;
+        this.width = 50;
+        this.height = 50;
     }
 
     sayHi() {
@@ -99,6 +99,8 @@ class Poison {
         this.positionX = positionX;
         this.positionY = positionY;
         this.url = url;
+        this.width = 65;
+        this.height = 70;
     }
 
     sayHi() {
@@ -135,8 +137,22 @@ newImage(poison.url,poison.positionX, poison.positionY )
 //boundary box window.location
 //compare with the mouse /poison
 
+function collisionDetection (entity1, entity2){
+    if (
+        entity1.positionX < entity2.positionX + entity2.width && 
+        entity1.positionX + entity1.width > entity2.positionX && //right side of E1 closer than E2 if not they cant touch 
+        entity1.positionY < entity2.positionY + entity2.height && //grows from top to bottom. If top of E1 isnt heigher than bottom of E2 they cant touch
+        entity1.positionY + entity1.height > entity2.positionY // is E1 lower than E2 if true that they are touching
+    
 
+    ){
+        return true;
+    } else {
+        return false;
+    }
+  
 
+}
 
 
 
