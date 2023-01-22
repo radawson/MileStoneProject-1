@@ -1,6 +1,6 @@
 
 //DEFINE NEW VARIABLES snake, mouse, score board, etc
-
+const requiredWins = 3
 
 let scoreBoard = document.querySelector(".scoreBoard")
 let grid = document.querySelector(".grid");
@@ -33,11 +33,12 @@ window.addEventListener("load", () => {
 
 class Snake {
 
-    constructor(name, positionX, positionY, url) {
+    constructor(name, positionX, positionY, url, audio) {
         this.name = name;
         this.positionX = positionX;
         this.positionY = positionY;
         this.url = url;
+        this.audio = audio;
     }
 
 
@@ -62,14 +63,12 @@ function between(x, y) {
     )
 }
 
-console.log(
-    between(0, 100)
-)
 
+//bottom value + width of snake 
 //attatch image to snake 4 w/ constructor
 
 class Mouse {
-    constructor(name, positionX, positionY, url) {
+    constructor(name, positionX, positionY, url,) {
         this.name = name;
         this.positionX = positionX;
         this.positionY = positionY;
@@ -130,9 +129,19 @@ newImage(snake.url, snake.positionX, snake.positionY);
 newImage(poison.url,poison.positionX, poison.positionY )
 
 // if snake collides with mouse 
+//collision between mouse and snake increases point
+// collision between snake and poison game over
 
-if (snake.position !==0) {
-    for (i=0; i < snake.position.length; i++) {
-        let 
-    }
-}
+//boundary box window.location
+//compare with the mouse /poison
+
+
+
+
+
+
+
+//  CREATE SCORE BOARD
+
+//win game if you land on mouse 3 times
+//game over if you land on poison 1 time
