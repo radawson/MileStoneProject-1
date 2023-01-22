@@ -1,4 +1,3 @@
-
 //DEFINE NEW VARIABLES snake, mouse, score board, etc
 const requiredWins = 3
 
@@ -8,6 +7,11 @@ let flash = document.querySelector("flash");
 let restartGame = document.getElementById("restartGame");
 let newGame = document.getElementById("newGame");
 
+// creatures
+var mouse;
+var mouseTwo;
+var poison;
+var snake;
 
 //make our grid 10 by 10
 let width = 10;
@@ -16,16 +20,14 @@ let width = 10;
 let score = 0;
 
 //how to track mice intake (point accumulation)
-let mouseIndex = 0; 
-
+let mouseIndex = 0;
 
 //write a function that listens (eventListener) for clicks. Specifically when someone clicks "StartGame"
 
 //window onload
 window.addEventListener("load", () => {
-    console.log("page is fully loaded");
+    setUpPage();
 });
-
 
 class Snake {
 
@@ -39,7 +41,6 @@ class Snake {
         this.height = 80;
     }
 
-
     sayHi() {
         alert(this.name);
     }
@@ -47,13 +48,13 @@ class Snake {
     newSnake() {
         alert(this.positionX, positionY)
     }
-
-
+    updateCoords(newX, newY) {
+        this.positionX = newX;
+        this.positionY = newY;
+    }
 }
 
-
 // Usage:
-let snake = new Snake("SuperLarky", between(100,550),between(100,550), "dist/snakegame.png");
 
 function between(x, y) {
     return Math.floor(
@@ -61,10 +62,8 @@ function between(x, y) {
     )
 }
 
-
 //bottom value + width of snake 
 //attatch image to snake 4 w/ constructor
-
 class Mouse {
     constructor(name, positionX, positionY, url,) {
         this.name = name;
@@ -82,16 +81,12 @@ class Mouse {
     newMouse() {
         alert(this.positionX, positionY)
     }
+    updateCoords(newX, newY) {
+        this.positionX = newX;
+        this.positionY = newY;
+    }
 
-    
 }
-
-let mouse = new Mouse("Queso", between(100,550),between(100,550), "dist/mouse-gray-rightSMALL.png")
-
-
-
-let mouseTwo = new Mouse("Fresco",between(100,550),between(100,550), "dist/mouse-gray-rightSMALL.png")
-
 
 class Poison {
     constructor(name, positionX, positionY, url) {
@@ -111,9 +106,12 @@ class Poison {
         alert(this.positionX, positionY)
     }
 
-    
+    updateCoords(newX, newY) {
+        this.positionX = newX;
+        this.positionY = newY;
+    }
 }
-let poison = new Poison("GameOver", between(100,550),between(100,550), "dist/snakepoison.png")
+
 
 
 function newImage(url, left, bottom) {
@@ -126,10 +124,6 @@ function newImage(url, left, bottom) {
     return object
 }
 
-newImage(mouse.url, mouse.positionX, mouse.positionY);
-newImage(snake.url, snake.positionX, snake.positionY);
-newImage(poison.url,poison.positionX, poison.positionY )
-
 // if snake collides with mouse 
 //collision between mouse and snake increases point
 // collision between snake and poison game over
@@ -137,27 +131,60 @@ newImage(poison.url,poison.positionX, poison.positionY )
 //boundary box window.location
 //compare with the mouse /poison
 
-function collisionDetection (entity1, entity2){
+function collisionDetection(entity1, entity2) {
     if (
-        entity1.positionX < entity2.positionX + entity2.width && 
+        entity1.positionX < entity2.positionX + entity2.width &&
         entity1.positionX + entity1.width > entity2.positionX && //right side of E1 closer than E2 if not they cant touch 
         entity1.positionY < entity2.positionY + entity2.height && //grows from top to bottom. If top of E1 isnt heigher than bottom of E2 they cant touch
         entity1.positionY + entity1.height > entity2.positionY // is E1 lower than E2 if true that they are touching
-    
-
-    ){
+    ) {
         return true;
     } else {
         return false;
     }
-  
-
 }
 
+function setUpPage() {
+    mouse = new Mouse("Queso", between(100, 550), between(0, 550), "dist/mouse-gray-rightSMALL.png");
+    mouseTwo = new Mouse("Fresco", between(100, 550), between(0, 550), "dist/mouse-gray-rightSMALL.png");
+    poison = new Poison("GameOver", between(100, 550), between(0, 550), "dist/snakepoison.png");
+    snake = new Snake("SuperLarky", between(100, 550), between(0, 550), "dist/snakegame.png");
+    mainLoop();
+}
 
+function endGame(){
+    alert("Exceeded 20 turns");
+    location.reload();
+}
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
-//  CREATE SCORE BOARD
+function mainLoop() {
+    let count = 0;
+    // input
 
-//win game if you land on mouse 3 times
-//game over if you land on poison 1 time
+    //update
+    mouse.updateCoords(between(100, 550), between(0, 550));
+    mouseTwo.updateCoords(between(100, 550), between(0, 550));
+    poison.updateCoords(between(100, 550), between(0, 550));
+    snake.updateCoords(between(100, 550), between(0, 550));
+
+    //render
+    newImage(mouse.url, mouse.positionX, mouse.positionY);
+    newImage(snake.url, snake.positionX, snake.positionY);
+    newImage(poison.url, poison.positionX, poison.positionY);
+    if (collisionDetection(mouse, snake)) {
+        score += 1;
+    } else if (collisionDetection(snake, poison)) {
+        alert("AArgh! You died");
+        return;
+    } else {
+        count++;
+    }
+    if (count = 20) {
+        endGame();
+    }
+    console.log(score);
+}
