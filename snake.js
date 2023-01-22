@@ -93,6 +93,28 @@ let mouse = new Mouse("Queso", between(100,550),between(100,550), "dist/mouse-gr
 
 let mouseTwo = new Mouse("Fresco",between(100,550),between(100,550), "dist/mouse-gray-rightSMALL.png")
 
+
+class Poison {
+    constructor(name, positionX, positionY, url) {
+        this.name = name;
+        this.positionX = positionX;
+        this.positionY = positionY;
+        this.url = url;
+    }
+
+    sayHi() {
+        alert(this.name);
+    }
+
+    newPoison() {
+        alert(this.positionX, positionY)
+    }
+
+    
+}
+let poison = new Poison("GameOver", between(100,550),between(100,550), "dist/snakepoison.png")
+
+
 function newImage(url, left, bottom) {
     let object = document.createElement('img')
     object.src = url
@@ -104,7 +126,13 @@ function newImage(url, left, bottom) {
 }
 
 newImage(mouse.url, mouse.positionX, mouse.positionY);
-newImage(mouseTwo.url, mouseTwo.positionX, mouseTwo.positionY);
 newImage(snake.url, snake.positionX, snake.positionY);
+newImage(poison.url,poison.positionX, poison.positionY )
 
 // if snake collides with mouse 
+
+if (snake.position !==0) {
+    for (i=0; i < snake.position.length; i++) {
+        let 
+    }
+}
