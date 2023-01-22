@@ -32,13 +32,12 @@ window.addEventListener("load", () => {
 
 
 class Snake {
-
-    constructor(name, positionX, positionY) {
+    constructor(name, positionX, positionY, url) {
         this.name = name;
-        this.positionX = positionX
-        this.positionY = positionY
+        this.positionX = positionX;
+        this.positionY = positionY;
+        this.url = url;
     }
-
 
     sayHi() {
         alert(this.name);
@@ -47,20 +46,6 @@ class Snake {
     newSnake() {
         alert(this.positionX, positionY)
     }
- 
-    loadImages() {
-        snake = new Image();
-        fullsnake.src = "dist/fullsnake.png";
-        
-    }
-
-    window.addEventListener("load", event => {
-        let img =document.querySelector("fullsnake");
-
-        alert("image is loaded")
-
-    });
-
 }
 
 
@@ -76,7 +61,7 @@ let snake = new Snake("John");
 //snakeThree.sayHi()
 //snakeThree.newSnake()
 
-let snakeFour = new Snake("SuperLarky", between(0,600),between(0,600))
+let snakeFour = new Snake("SuperLarky", 300, between(0, 600), 'dist/fullsnake.png')
 
 //snakeFour.newSnake()
 
@@ -88,43 +73,40 @@ function between(x, y) {
     )
 }
 
-console.log(
-    between(0, 600)
-)
-
 //attatch image to snake 4 w/ constructor
 
 class Mouse {
-    constructor(name, positionX, positionY) {
+    constructor(name, positionX, positionY, url) {
         this.name = name;
-        this.positionX = positionX
-        this.positionY = positionY
+        this.positionX = positionX;
+        this.positionY = positionY;
+        this.url = url;
     }
 
     sayHi() {
         alert(this.name);
     }
 
-    newSnake() {
-        alert(this.positionX, positionY)
+    getPosition() {
+        alert(this.positionX, this.positionY)
     }
-
-    loadImages() {
-
-        mouseB = new Image() 
-            brownmouse.src = "dist/mouse-brown-left.png";
-        
-        mouseG = new Image() 
-            graymouse.src = "dist/mouse-gray-right.png";
-
-        
-    }
+    /*
+        loadImages(variableName) {
+    
+            mouseB = new Image() 
+                brownmouse.src = variableName;
+            
+            mouseG = new Image() 
+                graymouse.src = "dist/mouse-gray-right.png";
+    
+            
+        }*/
 }
 
-let mouse = new Mouse("Queso", between(0,600), between(0,600))
-mouse.sayHi()
+let mouse = new Mouse("Queso", between(0, 600), between(0, 600), "dist/gray-mouse.png")
 
-let mouseTwo = new Mouse("Fresco", between (0,600), between(0,600))
+
+let mouseTwo = new Mouse("Fresco", between(0, 600), between(0, 600), "dist/gray-mouse.png")
 
 
 //  let img = new Image ();
@@ -135,19 +117,16 @@ let mouseTwo = new Mouse("Fresco", between (0,600), between(0,600))
 //  };
 //  img.src = "dist/snakehead.png"
 
+function newImage(url, left, bottom) {
+    let object = document.createElement('img')
+    object.src = url
+    object.style.position = 'absolute'
+    object.style.left = left + 'px'
+    object.style.bottom = bottom + 'px'
+    document.body.append(object)
+    return object
+}
 
-
-// // let img = new Image ();
-// // let div = document.getElementById("snakebody");
-
-// // img.onload = function(){
-// //     alert("image is loaded")
-// // };
-// // img.src = "dist/snakebody.png"
-
-
-// let snakeHead = [
-//     {
-        
-//     }
-// ]
+newImage(mouse.url, mouse.positionX, mouse.positionY);
+newImage(mouseTwo.url, mouseTwo.positionX, mouseTwo.positionY);
+newImage(snakeFour.url, snakeFour.positionX, snakeFour.positionY)
