@@ -16,7 +16,7 @@ let width = 10;
 let score = 0;
 
 //how to track mice intake (point accumulation)
-let mouseIndex = 0; 
+let mouseIndex = 0;
 
 
 //write a function that listens (eventListener) for clicks. Specifically when someone clicks "StartGame"
@@ -53,7 +53,7 @@ class Snake {
 
 
 // Usage:
-let snake = new Snake("SuperLarky", between(100,550),between(100,550), "dist/snakegame.png");
+let snake = new Snake("SuperLarky", between(100, 550), between(100, 550), "dist/snakegame.png");
 
 function between(x, y) {
     return Math.floor(
@@ -83,14 +83,14 @@ class Mouse {
         alert(this.positionX, positionY)
     }
 
-    
+
 }
 
-let mouse = new Mouse("Queso", between(100,550),between(100,550), "dist/mouse-gray-rightSMALL.png")
+let mouse = new Mouse("Queso", between(100, 550), between(100, 550), "dist/mouse-gray-rightSMALL.png")
 
 
 
-let mouseTwo = new Mouse("Fresco",between(100,550),between(100,550), "dist/mouse-gray-rightSMALL.png")
+let mouseTwo = new Mouse("Fresco", between(100, 550), between(100, 550), "dist/mouse-gray-rightSMALL.png")
 
 
 class Poison {
@@ -111,9 +111,9 @@ class Poison {
         alert(this.positionX, positionY)
     }
 
-    
+
 }
-let poison = new Poison("GameOver", between(100,550),between(100,550), "dist/snakepoison.png")
+let poison = new Poison("GameOver", between(100, 550), between(100, 550), "dist/snakepoison.png")
 
 
 function newImage(url, left, bottom) {
@@ -128,7 +128,7 @@ function newImage(url, left, bottom) {
 
 newImage(mouse.url, mouse.positionX, mouse.positionY);
 newImage(snake.url, snake.positionX, snake.positionY);
-newImage(poison.url,poison.positionX, poison.positionY )
+newImage(poison.url, poison.positionX, poison.positionY)
 
 // if snake collides with mouse 
 //collision between mouse and snake increases point
@@ -137,160 +137,15 @@ newImage(poison.url,poison.positionX, poison.positionY )
 //boundary box window.location
 //compare with the mouse /poison
 
-function collisionDetection (entity1, entity2){
+function collisionDetection(entity1, entity2) {
     if (
-        entity1.positionX < entity2.positionX + entity2.width && 
+        entity1.positionX < entity2.positionX + entity2.width &&
         entity1.positionX + entity1.width > entity2.positionX && //right side of E1 closer than E2 if not they cant touch 
         entity1.positionY < entity2.positionY + entity2.height && //grows from top to bottom. If top of E1 isnt heigher than bottom of E2 they cant touch
         entity1.positionY + entity1.height > entity2.positionY // is E1 lower than E2 if true that they are touching
-    
-
-    ){
+    ) {
         return true;
     } else {
         return false;
     }
-  
-
 }
-
-
-
-
-//  CREATE SCORE BOARD
-
-//win game if you land on mouse 3 times
-//game over if you land on poison 1 time
-
-//DEFINE NEW VARIABLES snake, mouse, score board, etc
-
-
-let scoreBoard = document.querySelector(".scoreBoard")
-let grid = document.querySelector(".grid");
-let flash = document.querySelector("flash");
-let restartGame = document.getElementById("restartGame");
-let newGame = document.getElementById("newGame");
-
-
-//make our grid 10 by 10
-
-let width = 10;
-
-// how to track score
-let score = 0;
-
-//how to track mice intake (point accumulation)
-let mouseIndex = 0;
-
-// how fast should the game go? Snake move? 
-let speed = 0.5;
-
-
-//write a function that listens (eventListener) for clicks. Specifically when someone clicks "StartGame"
-
-//window onload
-window.addEventListener("load", () => {
-    console.log("page is fully loaded");
-});
-
-
-class Snake {
-    constructor(name, positionX, positionY, url) {
-        this.name = name;
-        this.positionX = positionX;
-        this.positionY = positionY;
-        this.url = url;
-    }
-
-    sayHi() {
-        alert(this.name);
-    }
-
-    newSnake() {
-        alert(this.positionX, positionY)
-    }
-}
-
-
-// Usage:
-let snake = new Snake("John");
-//snake.sayHi()
-
-//let snakeTwo = new Snake("Meroni", 0,10)
-
-//snakeTwo.newSnake()
-
-//let snakeThree = new Snake("Larky", "4,16")
-//snakeThree.sayHi()
-//snakeThree.newSnake()
-
-let snakeFour = new Snake("SuperLarky", 300, between(0, 600), 'dist/fullsnake.png')
-
-//snakeFour.newSnake()
-
-//
-
-function between(x, y) {
-    return Math.floor(
-        Math.random() * (y - x) + x
-    )
-}
-
-//attatch image to snake 4 w/ constructor
-
-class Mouse {
-    constructor(name, positionX, positionY, url) {
-        this.name = name;
-        this.positionX = positionX;
-        this.positionY = positionY;
-        this.url = url;
-    }
-
-    sayHi() {
-        alert(this.name);
-    }
-
-    getPosition() {
-        alert(this.positionX, this.positionY)
-    }
-    /*
-        loadImages(variableName) {
-    
-            mouseB = new Image() 
-                brownmouse.src = variableName;
-            
-            mouseG = new Image() 
-                graymouse.src = "dist/mouse-gray-right.png";
-    
-            
-
-        }*/
-}
-
-let mouse = new Mouse("Queso", between(0, 600), between(0, 600), "dist/gray-mouse.png")
-
-
-let mouseTwo = new Mouse("Fresco", between(0, 600), between(0, 600), "dist/gray-mouse.png")
-
-
-//  let img = new Image ();
-//  let div = document.getElementById("snakehead");
-
-// img.onload = function() {
-// alert("image is loaded")
-//  };
-//  img.src = "dist/snakehead.png"
-
-function newImage(url, left, bottom) {
-    let object = document.createElement('img')
-    object.src = url
-    object.style.position = 'absolute'
-    object.style.left = left + 'px'
-    object.style.bottom = bottom + 'px'
-    document.body.append(object)
-    return object
-}
-
-newImage(mouse.url, mouse.positionX, mouse.positionY);
-newImage(mouseTwo.url, mouseTwo.positionX, mouseTwo.positionY);
-newImage(snakeFour.url, snakeFour.positionX, snakeFour.positionY)
