@@ -1,12 +1,14 @@
 
 body {
     background-color: rgb(0, 0, 0);
+    color: hotpink;
 }
-/*fieldset {
+fieldset {
     text-align: center;
-    border-radius: 10em;
+    border-radius: 1em;
     border-color: rgb(103, 98, 98);
     display: inline-block;
+    
 }
 
 #createaccount-button , #submit-button {
@@ -73,3 +75,4 @@ img {
     border: 0;
     padding: 3px;
   }
+
