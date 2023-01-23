@@ -11,22 +11,40 @@ fieldset {
     
 }
 
-#createaccount-button , #submit-button {
+#createaccount-button , #restartGame , #newGame {
     border-radius: 1.5em;
-    background-color: rgb(227,222,209);
-    
+    background-color: whitesmoke;
+    color: black;
+    margin-top: 1em;
 
 }
 
-#firstname, #lastname, #username, #password {
-    border-radius: 1em;
-    border-width: 0.1em;
-    text-align: center;
-}*/
+#restartGame , #newGame {
+    position:relative;
+    left: 30px;
+
+
+}
+
+#createaccount-button {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    background-color: whitesmoke;
+
+}
+
+.flash {
+    display: inline-block;
+   
+}
 
 h1 {
-    color: rgb(56, 54, 48);
+    color: rgb(186, 183, 173);
     text-align: center;
+    padding-bottom: 2em;
+    padding-top: 1em;
+    
 }
 
  .container {
