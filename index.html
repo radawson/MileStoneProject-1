@@ -30,12 +30,12 @@
 
 
     <div class="flash">
-        <button class="restartGame" id="restartGame" onclick="gameLoop()">Try Again</button>
+        <button class="restartGame" id="restartGame" onclick="setTimeout(mainLoop())">Try Again</button>
 
     </div>
 
     <div class="flash">
-        <button class="restartGame" id="newGame">Start Game</button>
+        <button class="restartGame" id="newGame" onclick="setTimeout(mainLoop())">Start Game</button>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

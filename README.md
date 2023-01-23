@@ -1,4 +1,10 @@
 # MileStoneProject-1
+How to play:
+Start game and try to land on as many mice as you can by continuously clicking on "Try Again". Landing on 3 mice within 20 turns wins the game!
+If your snake lands on the poison, IT'S GAME OVER!
+
+
+
 1st mile stone project including, JS, HTML, CSS
 
 General Requirements

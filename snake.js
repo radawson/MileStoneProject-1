@@ -55,7 +55,7 @@ class Snake {
 }
 
 // Usage:
-let snake = new Snake("SuperLarky", between(100, 550), between(100, 550), "dist/snakegame.png");
+
 
 function between(x, y) {
     return Math.floor(
@@ -90,13 +90,6 @@ class Mouse {
 
 }
 
-let mouse = new Mouse("Queso", between(100, 550), between(100, 550), "dist/mouse-gray-rightSMALL.png")
-
-
-
-let mouseTwo = new Mouse("Fresco", between(100, 550), between(100, 550), "dist/mouse-gray-rightSMALL.png")
-
-
 class Poison {
     constructor(name, positionX, positionY, url) {
         this.name = name;
@@ -115,10 +108,12 @@ class Poison {
         alert(this.positionX, positionY)
     }
 
+    updateCoords(newX, newY) {
+        this.positionX = newX;
+        this.positionY = newY;
+    }
 
 }
-let poison = new Poison("GameOver", between(100, 550), between(100, 550), "dist/snakepoison.png")
-
 
 function newImage(url, left, bottom) {
     let object = document.createElement('img')
@@ -130,9 +125,7 @@ function newImage(url, left, bottom) {
     return object
 }
 
-newImage(mouse.url, mouse.positionX, mouse.positionY);
-newImage(snake.url, snake.positionX, snake.positionY);
-newImage(poison.url, poison.positionX, poison.positionY)
+
 
 // if snake collides with mouse 
 //collision between mouse and snake increases point
@@ -171,9 +164,23 @@ function endGame(){
     location.reload();
 }
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+// function sleep(ms) {
+//    return new Promise(resolve => setTimeout(resolve,ms));
+// }
+
+const sleep = (time) => {
+    return new Promise(resolve => setTimeout(resolve,time))
 }
+
+const slowDown = async () => {
+    for (let i=0; i< 100; i++){
+        await sleep(10000)
+        console.log(i)
+    }
+}
+slowDown()
+
+
 
 function mainLoop() {
     let count = 0;
