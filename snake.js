@@ -3,9 +3,9 @@ const requiredWins = 3
 
 let scoreBoard = document.querySelector(".scoreBoard")
 let grid = document.querySelector(".grid");
-let flash = document.querySelector("flash");
-let restartGame = document.getElementById("restartGame");
-let newGame = document.getElementById("newGame");
+let flash = document.querySelector(".flash");
+let restartGame = document.getElementById(".restartGame");
+let newGame = document.getElementById(".newGame");
 
 // creatures
 var mouse;
@@ -115,6 +115,20 @@ class Poison {
 
 }
 
+const sleep = (time) => {
+    return new Promise(resolve => setTimeout(resolve,time))
+}
+
+const slowDown = async () => {
+    for (let i=0; i < 100; i++){
+        await sleep(60000)
+        console.log(i)
+    }
+}
+slowDown()
+
+
+
 function newImage(url, left, bottom) {
     let object = document.createElement('img')
     object.src = url
@@ -153,14 +167,14 @@ function collisionDetection(entity1, entity2) {
 
 function setUpPage() {
     mouse = new Mouse("Queso", between(100, 550), between(0, 550), "dist/mouse-gray-rightSMALL.png");
-    mouseTwo = new Mouse("Fresco", between(100, 550), between(0, 550), "dist/mouse-gray-rightSMALL.png");
+    mouseTwo = new Mouse("Fresco", between(100, 550), between(0, 550), "dist/mouse-brown.png");
     poison = new Poison("GameOver", between(100, 550), between(0, 550), "dist/snakepoison.png");
     snake = new Snake("SuperLarky", between(100, 550), between(0, 550), "dist/snakegame.png");
     mainLoop();
 }
 
 function endGame(){
-    alert("Exceeded 20 turns");
+   // alert("Exceeded 20 turns");
     location.reload();
 }
 
@@ -168,17 +182,7 @@ function endGame(){
 //    return new Promise(resolve => setTimeout(resolve,ms));
 // }
 
-const sleep = (time) => {
-    return new Promise(resolve => setTimeout(resolve,time))
-}
 
-const slowDown = async () => {
-    for (let i=0; i< 100; i++){
-        await sleep(10000)
-        console.log(i)
-    }
-}
-slowDown()
 
 
 
@@ -194,17 +198,19 @@ function mainLoop() {
 
     //render
     newImage(mouse.url, mouse.positionX, mouse.positionY);
+    newImage(mouseTwo.url, mouseTwo.positionX, mouseTwo.positionY);
     newImage(snake.url, snake.positionX, snake.positionY);
     newImage(poison.url, poison.positionX, poison.positionY);
     if (collisionDetection(mouse, snake)) {
         score += 1;
+        alert("YUM! Feed me again! +1pt!")
     } else if (collisionDetection(snake, poison)) {
         alert("AArgh! You died");
         return;
     } else {
         count++;
     }
-    if (count = 20) {
+    if (count = 3) {
         endGame();
     }
     console.log(score);
