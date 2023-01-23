@@ -115,17 +115,9 @@ class Poison {
 
 }
 
-const sleep = (time) => {
-    return new Promise(resolve => setTimeout(resolve,time))
-}
 
-const slowDown = async () => {
-    for (let i=0; i < 100; i++){
-        await sleep(60000)
-        console.log(i)
-    }
-}
-slowDown()
+
+
 
 
 
@@ -165,6 +157,14 @@ function collisionDetection(entity1, entity2) {
 
 }
 
+async function sleep(time) {
+    return new Promise(resolve => {
+        setTimeout(resolve, time)
+    })
+
+}
+
+
 function setUpPage() {
     mouse = new Mouse("Queso", between(100, 550), between(0, 550), "dist/mouse-gray-rightSMALL.png");
     mouseTwo = new Mouse("Fresco", between(100, 550), between(0, 550), "dist/mouse-brown.png");
@@ -173,10 +173,13 @@ function setUpPage() {
     mainLoop();
 }
 
-function endGame(){
-   // alert("Exceeded 20 turns");
+
+
+function endGame() {
+   // alert("GAME OVER! Exceeded 20 turns");
     location.reload();
-}
+
+}//NEED TO MAKE RELOAD SLOWER add await or setInterval
 
 // function sleep(ms) {
 //    return new Promise(resolve => setTimeout(resolve,ms));
@@ -215,3 +218,4 @@ function mainLoop() {
     }
     console.log(score);
 }
+
