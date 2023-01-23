@@ -27,7 +27,9 @@ let mouseIndex = 0;
 //window onload
 window.addEventListener("load", () => {
     setUpPage();
+    
 });
+//delay event listener
 
 class Snake {
 
