@@ -1,4 +1,71 @@
 //DEFINE NEW VARIABLES snake, mouse, score board, etc
+
+//Classes
+class Mouse {
+    constructor(name, positionX, positionY, url,) {
+        this.name = name;
+        this.positionX = positionX;
+        this.positionY = positionY;
+        this.url = url;
+        this.width = 50;
+        this.height = 50;
+    }
+    sayHi() {
+        alert(this.name);
+    }
+    newMouse() {
+        alert(this.positionX, positionY)
+    }
+    updateCoords(newX, newY) {
+        this.positionX = newX;
+        this.positionY = newY;
+    }
+}
+
+class Poison {
+    constructor(name, positionX, positionY, url) {
+        this.name = name;
+        this.positionX = positionX;
+        this.positionY = positionY;
+        this.url = url;
+        this.width = 65;
+        this.height = 70;
+    }
+    sayHi() {
+        alert(this.name);
+    }
+    newPoison() {
+        alert(this.positionX, positionY)
+    }
+    updateCoords(newX, newY) {
+        this.positionX = newX;
+        this.positionY = newY;
+    }
+}
+
+class Snake {
+    constructor(name, positionX, positionY, url, audio) {
+        this.name = name;
+        this.positionX = positionX;
+        this.positionY = positionY;
+        this.url = url;
+        this.audio = audio;
+        this.width = 67;
+        this.height = 80;
+    }
+    sayHi() {
+        alert(this.name);
+    }
+    newSnake() {
+        alert(this.positionX, positionY)
+    }
+    updateCoords(newX, newY) {
+        this.positionX = newX;
+        this.positionY = newY;
+    }
+}
+
+// Variables
 const requiredWins = 3
 
 let scoreBoard = document.querySelector(".scoreBoard")
@@ -29,31 +96,6 @@ window.addEventListener("load", () => {
     setUpPage();
 });
 
-class Snake {
-
-    constructor(name, positionX, positionY, url, audio) {
-        this.name = name;
-        this.positionX = positionX;
-        this.positionY = positionY;
-        this.url = url;
-        this.audio = audio;
-        this.width = 67;
-        this.height = 80;
-    }
-
-    sayHi() {
-        alert(this.name);
-    }
-
-    newSnake() {
-        alert(this.positionX, positionY)
-    }
-    updateCoords(newX, newY) {
-        this.positionX = newX;
-        this.positionY = newY;
-    }
-}
-
 // Usage:
 
 function between(x, y) {
@@ -62,74 +104,6 @@ function between(x, y) {
     )
 }
 
-//bottom value + width of snake 
-//attatch image to snake 4 w/ constructor
-class Mouse {
-    constructor(name, positionX, positionY, url,) {
-        this.name = name;
-        this.positionX = positionX;
-        this.positionY = positionY;
-        this.url = url;
-        this.width = 50;
-        this.height = 50;
-    }
-
-    sayHi() {
-        alert(this.name);
-    }
-
-    newMouse() {
-        alert(this.positionX, positionY)
-    }
-    updateCoords(newX, newY) {
-        this.positionX = newX;
-        this.positionY = newY;
-    }
-
-}
-
-class Poison {
-    constructor(name, positionX, positionY, url) {
-        this.name = name;
-        this.positionX = positionX;
-        this.positionY = positionY;
-        this.url = url;
-        this.width = 65;
-        this.height = 70;
-    }
-
-    sayHi() {
-        alert(this.name);
-    }
-
-    newPoison() {
-        alert(this.positionX, positionY)
-    }
-
-    updateCoords(newX, newY) {
-        this.positionX = newX;
-        this.positionY = newY;
-    }
-}
-
-
-
-function newImage(url, left, bottom) {
-    let object = document.createElement('img')
-    object.src = url
-    object.style.position = 'absolute'
-    object.style.left = left + 'px'
-    object.style.bottom = bottom + 'px'
-    document.body.append(object)
-    return object
-}
-
-// if snake collides with mouse 
-//collision between mouse and snake increases point
-// collision between snake and poison game over
-
-//boundary box window.location
-//compare with the mouse /poison
 
 function collisionDetection(entity1, entity2) {
     if (
@@ -144,6 +118,19 @@ function collisionDetection(entity1, entity2) {
     }
 }
 
+//bottom value + width of snake 
+//attatch image to snake 4 w/ constructor
+
+function newImage(url, left, bottom) {
+    let object = document.createElement('img')
+    object.src = url
+    object.style.position = 'absolute'
+    object.style.left = left + 'px'
+    object.style.bottom = bottom + 'px'
+    document.body.append(object)
+    return object
+}
+
 function setUpPage() {
     mouse = new Mouse("Queso", between(100, 550), between(0, 550), "dist/mouse-gray-rightSMALL.png");
     mouseTwo = new Mouse("Fresco", between(100, 550), between(0, 550), "dist/mouse-gray-rightSMALL.png");
@@ -152,7 +139,7 @@ function setUpPage() {
     mainLoop();
 }
 
-function endGame(){
+function endGame() {
     alert("Exceeded 20 turns");
     location.reload();
 }
@@ -162,7 +149,7 @@ function sleep(ms) {
 }
 
 function mainLoop() {
-    let count = 0;
+    var count = 0;
     // input
 
     //update
@@ -183,7 +170,7 @@ function mainLoop() {
     } else {
         count++;
     }
-    if (count = 20) {
+    if (count > 20) {
         endGame();
     }
     console.log(score);
