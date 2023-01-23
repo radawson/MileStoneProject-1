@@ -16,7 +16,7 @@ let width = 10;
 let score = 0;
 
 //how to track mice intake (point accumulation)
-let mouseIndex = 0; 
+let mouseIndex = 0;
 
 
 //write a function that listens (eventListener) for clicks. Specifically when someone clicks "StartGame"
@@ -53,7 +53,7 @@ class Snake {
 
 
 // Usage:
-let snake = new Snake("SuperLarky", between(100,550),between(100,550), "dist/snakegame.png");
+let snake = new Snake("SuperLarky", between(100, 550), between(100, 550), "dist/snakegame.png");
 
 function between(x, y) {
     return Math.floor(
@@ -66,7 +66,7 @@ function between(x, y) {
 //attatch image to snake 4 w/ constructor
 
 class Mouse {
-    constructor(name, positionX, positionY, url,) {
+    constructor(name, positionX, positionY, url) {
         this.name = name;
         this.positionX = positionX;
         this.positionY = positionY;
@@ -83,14 +83,14 @@ class Mouse {
         alert(this.positionX, positionY)
     }
 
-    
+
 }
 
-let mouse = new Mouse("Queso", between(100,550),between(100,550), "dist/mouse-gray-rightSMALL.png")
+let mouse = new Mouse("Queso", between(100, 550), between(100, 550), "dist/mouse-gray-rightSMALL.png")
 
 
 
-let mouseTwo = new Mouse("Fresco",between(100,550),between(100,550), "dist/mouse-gray-rightSMALL.png")
+let mouseTwo = new Mouse("Fresco", between(100, 550), between(100, 550), "dist/mouse-gray-rightSMALL.png")
 
 
 class Poison {
@@ -111,9 +111,9 @@ class Poison {
         alert(this.positionX, positionY)
     }
 
-    
+
 }
-let poison = new Poison("GameOver", between(100,550),between(100,550), "dist/snakepoison.png")
+let poison = new Poison("GameOver", between(100, 550), between(100, 550), "dist/snakepoison.png")
 
 
 function newImage(url, left, bottom) {
@@ -128,7 +128,7 @@ function newImage(url, left, bottom) {
 
 newImage(mouse.url, mouse.positionX, mouse.positionY);
 newImage(snake.url, snake.positionX, snake.positionY);
-newImage(poison.url,poison.positionX, poison.positionY )
+newImage(poison.url, poison.positionX, poison.positionY)
 
 // if snake collides with mouse 
 //collision between mouse and snake increases point
@@ -137,20 +137,20 @@ newImage(poison.url,poison.positionX, poison.positionY )
 //boundary box window.location
 //compare with the mouse /poison
 
-function collisionDetection (entity1, entity2){
+function collisionDetection(entity1, entity2) {
     if (
-        entity1.positionX < entity2.positionX + entity2.width && 
+        entity1.positionX < entity2.positionX + entity2.width &&
         entity1.positionX + entity1.width > entity2.positionX && //right side of E1 closer than E2 if not they cant touch 
         entity1.positionY < entity2.positionY + entity2.height && //grows from top to bottom. If top of E1 isnt heigher than bottom of E2 they cant touch
         entity1.positionY + entity1.height > entity2.positionY // is E1 lower than E2 if true that they are touching
-    
 
-    ){
+
+    ) {
         return true;
     } else {
         return false;
     }
-  
+
 
 }
 
