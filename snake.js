@@ -1,4 +1,3 @@
-
 //DEFINE NEW VARIABLES snake, mouse, score board, etc
 const requiredWins = 3
 
@@ -8,6 +7,11 @@ let flash = document.querySelector("flash");
 let restartGame = document.getElementById("restartGame");
 let newGame = document.getElementById("newGame");
 
+// creatures
+var mouse;
+var mouseTwo;
+var poison;
+var snake;
 
 //make our grid 10 by 10
 let width = 10;
@@ -18,14 +22,12 @@ let score = 0;
 //how to track mice intake (point accumulation)
 let mouseIndex = 0;
 
-
 //write a function that listens (eventListener) for clicks. Specifically when someone clicks "StartGame"
 
 //window onload
 window.addEventListener("load", () => {
-    console.log("page is fully loaded");
+    setUpPage();
 });
-
 
 class Snake {
 
@@ -39,7 +41,6 @@ class Snake {
         this.height = 80;
     }
 
-
     sayHi() {
         alert(this.name);
     }
@@ -47,10 +48,11 @@ class Snake {
     newSnake() {
         alert(this.positionX, positionY)
     }
-
-
+    updateCoords(newX, newY) {
+        this.positionX = newX;
+        this.positionY = newY;
+    }
 }
-
 
 // Usage:
 let snake = new Snake("SuperLarky", between(100, 550), between(100, 550), "dist/snakegame.png");
@@ -61,10 +63,8 @@ function between(x, y) {
     )
 }
 
-
 //bottom value + width of snake 
 //attatch image to snake 4 w/ constructor
-
 class Mouse {
     constructor(name, positionX, positionY, url) {
         this.name = name;
@@ -81,6 +81,10 @@ class Mouse {
 
     newMouse() {
         alert(this.positionX, positionY)
+    }
+    updateCoords(newX, newY) {
+        this.positionX = newX;
+        this.positionY = newY;
     }
 
 
@@ -154,10 +158,47 @@ function collisionDetection(entity1, entity2) {
 
 }
 
+function setUpPage() {
+    mouse = new Mouse("Queso", between(100, 550), between(0, 550), "dist/mouse-gray-rightSMALL.png");
+    mouseTwo = new Mouse("Fresco", between(100, 550), between(0, 550), "dist/mouse-gray-rightSMALL.png");
+    poison = new Poison("GameOver", between(100, 550), between(0, 550), "dist/snakepoison.png");
+    snake = new Snake("SuperLarky", between(100, 550), between(0, 550), "dist/snakegame.png");
+    mainLoop();
+}
 
+function endGame(){
+    alert("Exceeded 20 turns");
+    location.reload();
+}
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
-//  CREATE SCORE BOARD
+function mainLoop() {
+    let count = 0;
+    // input
 
-//win game if you land on mouse 3 times
-//game over if you land on poison 1 time
+    //update
+    mouse.updateCoords(between(100, 550), between(0, 550));
+    mouseTwo.updateCoords(between(100, 550), between(0, 550));
+    poison.updateCoords(between(100, 550), between(0, 550));
+    snake.updateCoords(between(100, 550), between(0, 550));
+
+    //render
+    newImage(mouse.url, mouse.positionX, mouse.positionY);
+    newImage(snake.url, snake.positionX, snake.positionY);
+    newImage(poison.url, poison.positionX, poison.positionY);
+    if (collisionDetection(mouse, snake)) {
+        score += 1;
+    } else if (collisionDetection(snake, poison)) {
+        alert("AArgh! You died");
+        return;
+    } else {
+        count++;
+    }
+    if (count = 20) {
+        endGame();
+    }
+    console.log(score);
+}
