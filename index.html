@@ -15,29 +15,23 @@
 </head>
 
 <body>
-
-    <form method="GET" action="results.html">
-        <input type="submit" id="createaccount-button" value="Create Account">
-    </form>
-    <h1>Meroni's Snake Game</h1>
-
-
-    <div class="scoreBoard"></div>
-    <div class="grid"></div>
-    <div class="submit-button"></div>
-    <div class="snake"></div>
-    <div class="mouse"></div>
-
-
-    <div class="flash">
-        <button class="restartGame" id="restartGame" onclick="gameLoop()">Try Again</button>
+    <div class="jumbotron">
+        <h1 class="display-4">Meroni's Snake Game</h1>
+        <h3 class="display-8">Score: <b id="score"></b></h3>
+        <div class="button-bar">
+            <button type="button" class="btn btn-primary btn-lg" id="button1" onclick="mainLoop()">Try Again</button>
+            <button type="button" class="btn btn-primary btn-lg" id="button2" onclick="location.reload()">
+                New Game
+            </button>
+        </div>
 
     </div>
-
-    <div class="flash">
-        <button class="restartGame" id="newGame">Start Game</button>
+    <div class="container-canvas">
+        <canvas id="snake-snack" width="800" height="600">Snakes snack here</canvas>
     </div>
-
+    <div>
+        <p id="message">The snake ate <b id="mouseName"></b>!</p>
+    </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>

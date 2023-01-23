@@ -2,11 +2,12 @@
 
 //Classes
 class Mouse {
-    constructor(name, positionX, positionY, url,) {
+    constructor(name, positionX, positionY, url) {
         this.name = name;
         this.positionX = positionX;
         this.positionY = positionY;
-        this.url = url;
+        this.icon = new Image();
+        this.icon.src = url;
         this.width = 50;
         this.height = 50;
     }
@@ -27,9 +28,10 @@ class Poison {
         this.name = name;
         this.positionX = positionX;
         this.positionY = positionY;
-        this.url = url;
-        this.width = 65;
-        this.height = 70;
+        this.icon = new Image();
+        this.icon.src = url;
+        this.width = 60;
+        this.height = 75;
     }
     sayHi() {
         alert(this.name);
@@ -48,7 +50,8 @@ class Snake {
         this.name = name;
         this.positionX = positionX;
         this.positionY = positionY;
-        this.url = url;
+        this.icon = new Image();
+        this.icon.src = url;
         this.audio = audio;
         this.width = 67;
         this.height = 80;
@@ -67,14 +70,22 @@ class Snake {
 
 // Variables
 const requiredWins = 3
+const names = ["Queso", "Fresco", "Pablo", "Speedy","Sleepy","Dopey","Grumpy","Sneezy","Bashful","Happy","Doc"]
 
-let scoreBoard = document.querySelector(".scoreBoard")
-let grid = document.querySelector(".grid");
-let flash = document.querySelector("flash");
-let restartGame = document.getElementById("restartGame");
-let newGame = document.getElementById("newGame");
+// Canvas elements
+const canvas = document.getElementById("snake-snack");
+const ctx = canvas.getContext("2d");
+
+// Gameplay
+const gridheight = 600;
+const gridwidth = 600;
+const maxTurns = 25;
+var turnCount = 0;
 
 // creatures
+const mice = [];
+// Minimum number of mice to generate 
+const mouseCount = Math.floor(Math.random() * 10 + 2);
 var mouse;
 var mouseTwo;
 var poison;
@@ -93,7 +104,8 @@ let mouseIndex = 0;
 
 //window onload
 window.addEventListener("load", () => {
-    setUpPage();
+    setUpPage(() => renderObjects());
+
 });
 
 // Usage:
@@ -103,7 +115,6 @@ function between(x, y) {
         Math.random() * (y - x) + x
     )
 }
-
 
 function collisionDetection(entity1, entity2) {
     if (
@@ -118,60 +129,77 @@ function collisionDetection(entity1, entity2) {
     }
 }
 
-//bottom value + width of snake 
-//attatch image to snake 4 w/ constructor
-
-function newImage(url, left, bottom) {
-    let object = document.createElement('img')
-    object.src = url
-    object.style.position = 'absolute'
-    object.style.left = left + 'px'
-    object.style.bottom = bottom + 'px'
-    document.body.append(object)
-    return object
+function renderObjects() {
+    ctx.globalCompositeOperation = "destination-over";
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // clear canvas
+    ctx.drawImage(poison.icon, poison.positionX, poison.positionY);
+    ctx.drawImage(snake.icon, snake.positionX, snake.positionY);
+    mice.forEach(mouse => {
+        ctx.drawImage(mouse.icon, mouse.positionX, mouse.positionY);
+    });
 }
 
 function setUpPage() {
-    mouse = new Mouse("Queso", between(100, 550), between(0, 550), "dist/mouse-gray-rightSMALL.png");
-    mouseTwo = new Mouse("Fresco", between(100, 550), between(0, 550), "dist/mouse-gray-rightSMALL.png");
-    poison = new Poison("GameOver", between(100, 550), between(0, 550), "dist/snakepoison.png");
-    snake = new Snake("SuperLarky", between(100, 550), between(0, 550), "dist/snakegame.png");
-    mainLoop();
+    document.getElementById('button1').innerHTML = 'Start Game';
+    document.getElementById('score').innerHTML = score;
+    for (let i = 0; i < mouseCount; i++) {
+        mice.push(new Mouse(names[i], between(50, 550), between(50, 550), "dist/mouse-gray-rightSMALL.png"));
+    }
+    poison = new Poison("GameOver", between(50, 550), between(50, 550), "dist/snakepoison.png");
+    snake = new Snake("SuperLarky", between(50, 550), between(50, 550), "dist/snakegame.png");
 }
 
-function endGame() {
-    alert("Exceeded 20 turns");
-    location.reload();
+function endGame(message) {
+    alert(message);
+    document.getElementById('button1').style.display = 'none';
 }
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+function getInput() {
+    document.querySelector('#button1').innerHTML = 'Next Turn';
+    document.querySelector('#message').style.display = 'none';
+    mice.forEach(mouse => {
+        mouse.updateCoords(between(50, 750), between(0, 550));
+    });
+    poison.updateCoords(between(50, 750), between(0, 550));
+    snake.updateCoords(between(50, 750), between(0, 550));
 }
 
-function mainLoop() {
-    var count = 0;
+function updateObjects() {
+    for (let i = 0; i < mice.length; i++) {
+        let mouse = mice[i];
+        if (collisionDetection(mouse, snake)) {
+            score += 1;
+            mice.splice(i, 1);
+            document.querySelector('#message').style.display = 'block';
+            document.querySelector('#mouseName').innerHTML = mouse.name;
+        }
+        // if mouse hits poison, the mouse is rmeoved
+        if (collisionDetection(mouse, poison)) {
+            mice.splice(i, 1);
+        }
+        if (mice.length == 0) {
+            endGame("All mice are dead!");
+        }
+    }
+
+    if (collisionDetection(snake, poison)) {
+        endGame("AArgh! Killed by poison")
+    }
+}
+
+async function mainLoop() {
+
     // input
-
-    //update
-    mouse.updateCoords(between(100, 550), between(0, 550));
-    mouseTwo.updateCoords(between(100, 550), between(0, 550));
-    poison.updateCoords(between(100, 550), between(0, 550));
-    snake.updateCoords(between(100, 550), between(0, 550));
+    getInput();
 
     //render
-    newImage(mouse.url, mouse.positionX, mouse.positionY);
-    newImage(snake.url, snake.positionX, snake.positionY);
-    newImage(poison.url, poison.positionX, poison.positionY);
-    if (collisionDetection(mouse, snake)) {
-        score += 1;
-    } else if (collisionDetection(snake, poison)) {
-        alert("AArgh! You died");
-        return;
-    } else {
-        count++;
+    renderObjects();
+
+    //update
+    updateObjects();
+    turnCount++;
+    if (turnCount == maxTurns) {
+        endGame("You have run out of turns.");
     }
-    if (count > 20) {
-        endGame();
-    }
-    console.log(score);
+    document.getElementById('score').innerHTML = score;
 }
