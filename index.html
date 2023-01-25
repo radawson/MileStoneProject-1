@@ -15,7 +15,17 @@
 </head>
 
 <body>
-    <h1>Meroni's Snake Game</h1>
+    <div class="jumbotron">
+        <h1 class="display-4">Meroni's Snake Game</h1>
+        <h3 class="display-8">Score: <b id="score"></b></h3>
+        <div class="button-bar">
+            <button type="button" class="btn btn-primary btn-lg" id="button1" onclick="mainLoop()">Next Turn</button>
+            <button type="button" class="btn btn-primary btn-lg" id="button2" onclick="location.reload()">
+                New Game
+            </button>
+        </div>
+
+    </div>
     <form method="GET" action="results.html">
         <input type="submit" class="btn btn-primary" id="createaccount-button" value="Create Account">
     </form>
@@ -23,18 +33,12 @@
     <div class="container"> </div>
 
 
-    <div class="flash">
-        <button class="btn btn-primary" id="newGame" onclick="setTimeout(mainLoop())">New Game</button>
-    </div>
-    </div>
-
-    <div class="flash">
-        <button class="btn btn-primary" id="restartGame" onclick="setTimeout(mainLoop())">Try Again</button>
+   
 
 
 
 
-        <div class="scoreBoard"></div>
+       
         <div class="grid"></div>
         <div class="submit-button"></div>
         <div class="snake"></div>
@@ -60,3 +64,4 @@
 </body>
 
 </html>
+
