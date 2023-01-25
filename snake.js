@@ -77,6 +77,7 @@ const canvas = document.getElementById("snake-snack");
 const ctx = canvas.getContext("2d");
 
 // Gameplay
+const delay = ms => new Promise(res => setTimeout(res, ms));
 const gridheight = 600;
 const gridwidth = 600;
 const maxTurns = 25;
@@ -188,6 +189,9 @@ function updateObjects() {
 }
 
 async function mainLoop() {
+while (true){
+    // pause
+    await delay(500);
 
     // input
     getInput();
@@ -202,4 +206,5 @@ async function mainLoop() {
         endGame("You have run out of turns.");
     }
     document.getElementById('score').innerHTML = score;
+}
 }
