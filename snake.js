@@ -1,20 +1,28 @@
 //DEFINE NEW VARIABLES snake, mouse, score board, etc
 const requiredWins = 3
+// const delay = ms => new Promise(res => setTimeout(res, ms));
+const gridheight = "100vh";
+const gridwidth = "100vw";
+const maxTurns = 25;
 
 let scoreBoard = document.querySelector(".scoreBoard")
 let grid = document.querySelector(".grid");
 let flash = document.querySelector(".flash");
 let restartGame = document.getElementById(".restartGame");
 let newGame = document.getElementById(".newGame");
-
+let turnCount = 0;
 // creatures
 var mouse;
 var mouseTwo;
 var poison;
 var snake;
 
+// Gameplay
+
+
+
 //make our grid 10 by 10
-let width = 10;
+ let width = 10;
 
 // how to track score
 let score = 0;
@@ -26,8 +34,8 @@ let mouseIndex = 0;
 
 //window onload
 window.addEventListener("load", () => {
-    setUpPage();
-    
+    setUpPage(() => renderObjects());
+
 });
 //delay event listener
 
@@ -119,10 +127,6 @@ class Poison {
 
 
 
-
-
-
-
 function newImage(url, left, bottom) {
     let object = document.createElement('img')
     object.src = url
@@ -155,15 +159,13 @@ function collisionDetection(entity1, entity2) {
     } else {
         return false;
     }
-
-
 }
 
-async function sleep(time) {
-    return new Promise(resolve => {
-        setTimeout(resolve, time)
-    })
 
+async function sleep(time) {
+return new Promise(resolve => {
+setTimeout(resolve, time)
+   })
 }
 
 
@@ -208,9 +210,9 @@ function mainLoop() {
     newImage(poison.url, poison.positionX, poison.positionY);
     if (collisionDetection(mouse, snake)) {
         score += 1;
-        alert("YUM! Feed me again! +1pt!")
+        //alert("YUM! Feed me again! +1pt!")
     } else if (collisionDetection(snake, poison)) {
-        alert("AArgh! You died");
+       // alert("AArgh! You died");
         return;
     } else {
         count++;
