@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(218, 216, 216);
+    background-color: rgb(18, 17, 17);
     color: hotpink;
 }
 fieldset {
@@ -45,32 +45,32 @@ h1 {
    
 }
 
- /*.container {
+ /* .container {
     box-sizing: border-box;
     display: block;
     background-color: black(149, 194, 149);
     border: 10px solid yellow;
     padding: 20em;
-    height: 80vh;
+    height: 100%;
     width: 100%;
     margin-bottom: 4em;
     margin-top: -3em;
-    margin-left: 23em;
     justify-content: center;
     position: fixed;
     
-} */
+}  */
 
-.grid {
-    width: 1100px;
-    height: 600px;
+/* .grid {
+    min-width: 100vh;
+    min-height: 100vw;
+    max-width: 100%;
+    max-height: 100%;
     border:10px solid rgb(24, 23, 23);
     background-color: black;
     display: flex;
     flex-wrap: wrap;
-    margin-left: 24em; 
-    
-}
+    margin-bottom: 2em;
+} */
 
 .restartGame {
     background-color: rgb(24, 23, 23);
