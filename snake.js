@@ -5,6 +5,7 @@ const requiredWins = 3
 // const gridwidth = "100vw";
 const maxTurns = 25;
 
+
 let scoreBoard = document.querySelector(".scoreBoard")
 let grid = document.querySelector(".grid");
 let flash = document.querySelector(".flash");
@@ -25,7 +26,14 @@ var snake;
  let width = 10;
 
 // how to track score
+//  score = document.getElementById("score");
 let score = 0;
+
+
+// Play game
+
+
+
 
 //how to track mice intake (point accumulation)
 let mouseIndex = 0;
@@ -155,9 +163,9 @@ function collisionDetection(entity1, entity2) {
 
 
     ) {
-        return true;
-    } else {
         return false;
+    } else {
+        return true;
     }
 }
 
@@ -191,8 +199,6 @@ function endGame() {
 
 
 
-
-
 function mainLoop() {
     let count = 0;
     // input
@@ -208,6 +214,7 @@ function mainLoop() {
     newImage(mouseTwo.url, mouseTwo.positionX, mouseTwo.positionY);
     newImage(snake.url, snake.positionX, snake.positionY);
     newImage(poison.url, poison.positionX, poison.positionY);
+
     if (collisionDetection(mouse, snake)) {
         score += 1;
         //alert("YUM! Feed me again! +1pt!")
@@ -217,9 +224,9 @@ function mainLoop() {
     } else {
         count++;
     }
-    if (count = 3) {
+    if (count = 10) {
         endGame();
     }
-    console.log(score);
+    document.querySelector("#score").innerHTML=score;
 }
 
