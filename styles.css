@@ -1,25 +1,94 @@
-canvas {
-    border: 1px solid black;
+body {
+    background-color: rgb(18, 17, 17);
+    color: hotpink;
+}
+fieldset {
+    text-align: center;
+    border-radius: 1em;
+    border-color: rgb(103, 98, 98);
+    display: inline-block;
+    
+}
+
+#createaccount-button , #restartGame , #newGame {
+    border-radius: 1.5em;
+    background-color: whitesmoke;
+    color: black;
+    margin-top: 1em;
+
+}
+
+#restartGame , #newGame {
+    position:relative;
+    left: 30px;
+
+
+}
+
+#createaccount-button {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    background-color: whitesmoke;
+
+}
+
+/* .flash {
+    display: inline-block;
+   
+} */
+
+
+h1 {
+    color: rgb(0, 0, 0);
+    text-align: center;
+   
+}
+
+ /* .container {
+    box-sizing: border-box;
+    display: block;
+    background-color: black(149, 194, 149);
+    border: 10px solid yellow;
+    padding: 20em;
+    height: 100%;
+    width: 100%;
+    margin-bottom: 4em;
+    margin-top: -3em;
+    justify-content: center;
+    position: fixed;
+    
+}  */
+
+/* .grid {
+    min-width: 100vh;
+    min-height: 100vw;
+    max-width: 100%;
+    max-height: 100%;
+    border:10px solid rgb(24, 23, 23);
     background-color: black;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 2em;
+} */
+
+.restartGame {
+    background-color: rgb(24, 23, 23);
+    color: rgb(206, 206, 27);
+    display: flex;
+    width: 80px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+
 }
 
-h1,
-h3 {
-    color: rgb(56, 54, 48);
-    text-align: center;
-}
+img {
+    box-sizing: border-box;
+    display: block;
+    object-fit: contain;
+    margin: 0;
+    border: 0;
+    padding: 3px;
+  }
 
-p{
-    text-align: center;
-}
-
-.button-bar {
-    text-align: center;
-}
-
-.container-canvas {
-    /* Make the canvas div responsive */
-    margin-right: auto;
-    margin-left: auto;
-    width: 800px;
-}
