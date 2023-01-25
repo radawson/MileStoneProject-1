@@ -1,3 +1,4 @@
+
 //DEFINE NEW VARIABLES snake, mouse, score board, etc
 const requiredWins = 3
 // const delay = ms => new Promise(res => setTimeout(res, ms));
@@ -81,7 +82,7 @@ function between(x, y) {
     )
 }
 
-//bottom value + width of snake 
+//bottom value + width of snake
 //attatch image to snake 4 w/ constructor
 class Mouse {
     constructor(name, positionX, positionY, url) {
@@ -147,7 +148,7 @@ function newImage(url, left, bottom) {
 
 
 
-// if snake collides with mouse 
+// if snake collides with mouse
 //collision between mouse and snake increases point
 // collision between snake and poison game over
 
@@ -157,7 +158,7 @@ function newImage(url, left, bottom) {
 function collisionDetection(entity1, entity2) {
     if (
         entity1.positionX < entity2.positionX + entity2.width &&
-        entity1.positionX + entity1.width > entity2.positionX && //right side of E1 closer than E2 if not they cant touch 
+        entity1.positionX + entity1.width > entity2.positionX && //right side of E1 closer than E2 if not they cant touch
         entity1.positionY < entity2.positionY + entity2.height && //grows from top to bottom. If top of E1 isnt heigher than bottom of E2 they cant touch
         entity1.positionY + entity1.height > entity2.positionY // is E1 lower than E2 if true that they are touching
 
@@ -178,6 +179,7 @@ setTimeout(resolve, time)
 
 
 function setUpPage() {
+    document.querySelector("#score").innerHTML=score;
     mouse = new Mouse("Queso", between(0, 550), between(0, 550), "dist/mouse-gray-rightSMALL.png");
     mouseTwo = new Mouse("Fresco", between(0, 550), between(0, 550), "dist/mouse-brown.png");
     poison = new Poison("GameOver", between(0, 600), between(0, 600), "dist/snakepoison.png");
@@ -187,11 +189,11 @@ function setUpPage() {
 
 
 
-function endGame() {
+//function endGame() {
    // alert("GAME OVER! Exceeded 20 turns");
-    location.reload();
+  //  location.reload();}
 
-}//NEED TO MAKE RELOAD SLOWER add await or setInterval
+//NEED TO MAKE RELOAD SLOWER add await or setInterval
 
 // function sleep(ms) {
 //    return new Promise(resolve => setTimeout(resolve,ms));
@@ -229,4 +231,3 @@ function mainLoop() {
     }
     document.querySelector("#score").innerHTML=score;
 }
-
