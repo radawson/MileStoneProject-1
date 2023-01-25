@@ -45,15 +45,17 @@ class Snake {
         this.name = name;
         this.positionX = positionX;
         this.positionY = positionY;
-        this.icon = new Image();
-        this.icon.src = url;
-        this.width = 50;
-        this.height = 50;
+        this.url = url;
+        this.audio = audio;
+        this.width = 67;
+        this.height = 80;
     }
+
     sayHi() {
         alert(this.name);
     }
-    newMouse() {
+
+    newSnake() {
         alert(this.positionX, positionY)
     }
     updateCoords(newX, newY) {
@@ -78,15 +80,16 @@ class Mouse {
         this.name = name;
         this.positionX = positionX;
         this.positionY = positionY;
-        this.icon = new Image();
-        this.icon.src = url;
-        this.width = 60;
-        this.height = 75;
+        this.url = url;
+        this.width = 50;
+        this.height = 50;
     }
+
     sayHi() {
         alert(this.name);
     }
-    newPoison() {
+
+    newMouse() {
         alert(this.positionX, positionY)
     }
     updateCoords(newX, newY) {
@@ -97,23 +100,24 @@ class Mouse {
 
 }
 
-class Snake {
-    constructor(name, positionX, positionY, url, audio) {
+class Poison {
+    constructor(name, positionX, positionY, url) {
         this.name = name;
         this.positionX = positionX;
         this.positionY = positionY;
-        this.icon = new Image();
-        this.icon.src = url;
-        this.audio = audio;
-        this.width = 67;
-        this.height = 80;
+        this.url = url;
+        this.width = 65;
+        this.height = 70;
     }
+
     sayHi() {
         alert(this.name);
     }
-    newSnake() {
+
+    newPoison() {
         alert(this.positionX, positionY)
     }
+
     updateCoords(newX, newY) {
         this.positionX = newX;
         this.positionY = newY;
@@ -121,53 +125,16 @@ class Snake {
 
 }
 
-// Variables
-const requiredWins = 3
-const names = ["Queso", "Fresco", "Pablo", "Speedy","Sleepy","Dopey","Grumpy","Sneezy","Bashful","Happy","Doc"]
 
-// Canvas elements
-const canvas = document.getElementById("snake-snack");
-const ctx = canvas.getContext("2d");
 
-// Gameplay
-const delay = ms => new Promise(res => setTimeout(res, ms));
-const gridheight = 600;
-const gridwidth = 600;
-const maxTurns = 25;
-var turnCount = 0;
-
-// creatures
-const mice = [];
-// Minimum number of mice to generate 
-const mouseCount = Math.floor(Math.random() * 10 + 2);
-var mouse;
-var mouseTwo;
-var poison;
-var snake;
-
-//make our grid 10 by 10
-let width = 10;
-
-// how to track score
-let score = 0;
-
-//how to track mice intake (point accumulation)
-let mouseIndex = 0;
-
-//write a function that listens (eventListener) for clicks. Specifically when someone clicks "StartGame"
-
-//window onload
-window.addEventListener("load", () => {
-    setUpPage(() => renderObjects());
-
-});
-
-// Usage:
-
-function between(x, y) {
-    return Math.floor(
-        Math.random() * (y - x) + x
-    )
+function newImage(url, left, bottom) {
+    let object = document.createElement('img')
+    object.src = url
+    object.style.position = 'absolute'
+    object.style.left = left + 'px'
+    object.style.bottom = bottom + 'px'
+    document.body.append(object)
+    return object
 }
 
 
@@ -226,16 +193,9 @@ function endGame() {
 
 
 
-async function mainLoop() {
-while (true){
-    // pause
-    await delay(500);
-
+function mainLoop() {
+    let count = 0;
     // input
-    getInput();
-
-    //render
-    renderObjects();
 
     //update
     mouse.updateCoords(between(100, 550), between(0, 550));
@@ -260,6 +220,5 @@ while (true){
     if (count = 3) {
         endGame();
     }
-    console.log(score);
+    document.querySelector('#score').innerHTML = score;
 }
-
