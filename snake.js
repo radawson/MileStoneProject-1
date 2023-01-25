@@ -1,8 +1,8 @@
 //DEFINE NEW VARIABLES snake, mouse, score board, etc
 const requiredWins = 3
 // const delay = ms => new Promise(res => setTimeout(res, ms));
-const gridheight = "100vh";
-const gridwidth = "100vw";
+// const gridheight = "100vh";
+// const gridwidth = "100vw";
 const maxTurns = 25;
 
 let scoreBoard = document.querySelector(".scoreBoard")
@@ -170,10 +170,10 @@ setTimeout(resolve, time)
 
 
 function setUpPage() {
-    mouse = new Mouse("Queso", between(100, 550), between(0, 550), "dist/mouse-gray-rightSMALL.png");
-    mouseTwo = new Mouse("Fresco", between(100, 550), between(0, 550), "dist/mouse-brown.png");
-    poison = new Poison("GameOver", between(100, 550), between(0, 550), "dist/snakepoison.png");
-    snake = new Snake("SuperLarky", between(100, 550), between(0, 550), "dist/snakegame.png");
+    mouse = new Mouse("Queso", between(0, 550), between(0, 550), "dist/mouse-gray-rightSMALL.png");
+    mouseTwo = new Mouse("Fresco", between(0, 550), between(0, 550), "dist/mouse-brown.png");
+    poison = new Poison("GameOver", between(0, 600), between(0, 600), "dist/snakepoison.png");
+    snake = new Snake("SuperLarky", between(0, 550), between(0, 550), "dist/snakegame.png");
     mainLoop();
 }
 
