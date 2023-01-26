@@ -226,6 +226,7 @@ function gamePlay() {
 
 //function endGame() {
 // alert("GAME OVER! Exceeded 20 turns");
+
 //  location.reload();}
 
 
@@ -233,7 +234,7 @@ const numberOfHighScore = 10;
 const highScores = "highScores";
 
 const highScoreString = localStorage.getItem(highScores);
-const highScore = JSON.parse(highScoreString) ??
+const highScore = JSON.parse(highScoreString)??
     [];
 
 const lowestScore = highScores[numberOfHighScore - 1]?.score ?? 0;
