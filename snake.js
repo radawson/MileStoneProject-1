@@ -189,7 +189,7 @@ function mainLoop() {
         //alert("YUM! Feed me again! +1pt!")
     } else if (collisionDetection(snake, poison)) {
         // alert("AArgh! You died");
-        score -= 1;
+        score -= 10;
     } else {
         count++;
     }

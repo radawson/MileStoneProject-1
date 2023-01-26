@@ -2,7 +2,7 @@
                                 How to play:
 Start game and try to land on as many mice as you can by continuously clicking on "Try Again". 
 Each mouse pushes the score up by 1. An endless game to beat YOUR personal record.
-If your snake lands on the poison 3 points is deducted from your score.
+If your snake lands on the poison 10 points is deducted from your score.
 If at any point you recieve a negative score IT'S GAME OVER!
 
 HOW HIGH DO YOU THINK YOU CAN SCORE BEFORE GOING NEGATIVE?
