@@ -231,3 +231,8 @@ function mainLoop() {
     }
     document.querySelector("#score").innerHTML=score;
 }
+
+function endGame(){
+    setUpPage.reload;
+    return;
+}
