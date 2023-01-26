@@ -1,19 +1,17 @@
 
 //DEFINE NEW VARIABLES snake, mouse, score board, etc
-const requiredWins = 3
-// const delay = ms => new Promise(res => setTimeout(res, ms));
-// const gridheight = "100vh";
-// const gridwidth = "100vw";
-const maxTurns = 10;
+// const requiredWins = 3
+const maxTurns = 20;
 
 
 let scoreBoard = document.querySelector(".scoreBoard")
 let grid = document.querySelector(".grid");
 let flash = document.querySelector(".flash");
 // let restartGame = document.getElementById(".restartGame");
-// let newGame = document.getElementById(".newGame");
+let newGame = document.getElementById(".newGame");
 let turnCount = 0;
-// creatures
+
+// characters
 var mouse;
 var mouseTwo;
 var poison;
@@ -26,18 +24,15 @@ var snake;
 //make our grid 10 by 10
  let width = 10;
 
-// how to track score
-//  score = document.getElementById("score");
+// how to track score    score = document.getElementById("score");
 let score = 0;
-
 
 // Play game
 
 
 
 
-//how to track mice intake (point accumulation)
-let mouseIndex = 0;
+
 
 //write a function that listens (eventListener) for clicks. Specifically when someone clicks "StartGame"
 
@@ -146,14 +141,20 @@ function newImage(url, left, bottom) {
     return object
 }
 
+function setUpPage() {
+    
+    mouse = new Mouse("Queso", between(0, 550), between(0, 550), "dist/mouse-gray-rightSMALL.png");
+    mouseTwo = new Mouse("Fresco", between(0, 550), between(0, 550), "dist/mouse-brown.png");
+    poison = new Poison("GameOver", between(0, 600), between(0, 600), "dist/snakepoison.png");
+    snake = new Snake("SuperLarky", between(0, 550), between(0, 550), "dist/snakegame.png");
+    mainLoop();
+  
+}
 
+function startGame() {
+   
+}
 
-// if snake collides with mouse
-//collision between mouse and snake increases point
-// collision between snake and poison game over
-
-//boundary box window.location
-//compare with the mouse /poison
 
 function collisionDetection(entity1, entity2) {
     if (
@@ -169,39 +170,6 @@ function collisionDetection(entity1, entity2) {
         return true;
     }
 }
-
-
-async function sleep(time) {
-return new Promise(resolve => {
-setTimeout(resolve, time)
-   })
-}
-
-
-function setUpPage() {
-    document.querySelector("#score").innerHTML=score;
-    mouse = new Mouse("Queso", between(0, 550), between(0, 550), "dist/mouse-gray-rightSMALL.png");
-    mouseTwo = new Mouse("Fresco", between(0, 550), between(0, 550), "dist/mouse-brown.png");
-    poison = new Poison("GameOver", between(0, 600), between(0, 600), "dist/snakepoison.png");
-    snake = new Snake("SuperLarky", between(0, 550), between(0, 550), "dist/snakegame.png");
-    mainLoop();
-  
-}
-
-function startGame() {
-    
-}
-
-//function endGame() {
-   // alert("GAME OVER! Exceeded 20 turns");
-  //  location.reload();}
-
-//NEED TO MAKE RELOAD SLOWER add await or setInterval
-
-// function sleep(ms) {
-//    return new Promise(resolve => setTimeout(resolve,ms));
-// }
-
 
 
 function mainLoop() {
@@ -233,13 +201,37 @@ function mainLoop() {
     document.querySelector("#score").innerHTML=score;
 }
 
-function newGame(){
-    if (turnCount = 10) {
-        startGame.reload;
-        return;
-}}
+function gamePlay() {
+   if (score > 10) {
+    greeting = "YOU SAVED SIR SNAKE FROM STARVATION! YOU WON";
+    startGame();
+   }
+
+   else if (maxTurns === 20) {
+    greeting = "YOU RAN OUT OF TURNS";
+    endGame();
+   }
+
+    else {
+     greeting = "HOW COULD YOU LET SIR SNAKE STARVE? GAME OVER";
+    }
+    
+
+}
 
 function endGame(){
     setUpPage.reload;
     return;
 }
+
+// async function sleep(time) {
+// return new Promise(resolve => {
+// setTimeout(resolve, time)
+//    })}
+
+
+//function endGame() {
+   // alert("GAME OVER! Exceeded 20 turns");
+  //  location.reload();}
+
+
