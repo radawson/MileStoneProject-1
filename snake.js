@@ -226,7 +226,7 @@ function mainLoop() {
     } else {
         count++;
     }
-    if (count = 10) {
+    if (turnCount = 10) {
         endGame();
     }
     document.querySelector("#score").innerHTML=score;
