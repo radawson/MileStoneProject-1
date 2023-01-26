@@ -19,9 +19,6 @@ var snake;
 
 // keep highscore
 
-
-
-
 //make our grid 10 by 10
 let width = 10;
 
@@ -123,7 +120,7 @@ class Poison {
 
 }
 
-
+//pulls our images from dist onto the browser
 
 function newImage(url, left, bottom) {
     let object = document.createElement('img')
@@ -134,6 +131,8 @@ function newImage(url, left, bottom) {
     document.body.append(object)
     return object
 }
+
+//on load event listener will places characters on xy axis between the points listed below then follow the mainLoop function
 
 function setUpPage() {
 
@@ -149,7 +148,10 @@ function startGame() {
 
 }
 
-
+//collision detection btwn point and rectangle
+// comparing x and y coords and W H
+// if there is a gap there's no collission ( line 156)
+// if there is no gap the objects have collided (line 160)
 function collisionDetection(entity1, entity2) {
     if (
         entity1.positionX < entity2.positionX + entity2.width &&
@@ -229,6 +231,7 @@ function gamePlay() {
 
 //  location.reload();}
 
+// https://michael-karen.medium.com/how-to-save-high-scores-in-local-storage
 
 const numberOfHighScore = 10;
 const highScores = "highScores";
