@@ -4,14 +4,14 @@ const requiredWins = 3
 // const delay = ms => new Promise(res => setTimeout(res, ms));
 // const gridheight = "100vh";
 // const gridwidth = "100vw";
-const maxTurns = 25;
+const maxTurns = 10;
 
 
 let scoreBoard = document.querySelector(".scoreBoard")
 let grid = document.querySelector(".grid");
 let flash = document.querySelector(".flash");
-let restartGame = document.getElementById(".restartGame");
-let newGame = document.getElementById(".newGame");
+// let restartGame = document.getElementById(".restartGame");
+// let newGame = document.getElementById(".newGame");
 let turnCount = 0;
 // creatures
 var mouse;
@@ -43,7 +43,7 @@ let mouseIndex = 0;
 
 //window onload
 window.addEventListener("load", () => {
-    setUpPage(() => renderObjects());
+    setUpPage(() => startGame());
 
 });
 //delay event listener
@@ -185,9 +185,12 @@ function setUpPage() {
     poison = new Poison("GameOver", between(0, 600), between(0, 600), "dist/snakepoison.png");
     snake = new Snake("SuperLarky", between(0, 550), between(0, 550), "dist/snakegame.png");
     mainLoop();
+  
 }
 
-
+function startGame() {
+    
+}
 
 //function endGame() {
    // alert("GAME OVER! Exceeded 20 turns");
@@ -226,11 +229,15 @@ function mainLoop() {
     } else {
         count++;
     }
-    if (turnCount = 10) {
-        endGame();
-    }
+  
     document.querySelector("#score").innerHTML=score;
 }
+
+function newGame(){
+    if (turnCount = 10) {
+        startGame.reload;
+        return;
+}}
 
 function endGame(){
     setUpPage.reload;
