@@ -213,7 +213,7 @@ function mainLoop() {
 
     //render
     newImage(mouse.url, mouse.positionX, mouse.positionY);
-    newImage(mouseTwo.url, mouseTwo.positionX, mouseTwo.positionY);
+    // newImage(mouseTwo.url, mouseTwo.positionX, mouseTwo.positionY);
     newImage(snake.url, snake.positionX, snake.positionY);
     newImage(poison.url, poison.positionX, poison.positionY);
 
