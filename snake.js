@@ -27,13 +27,6 @@ var snake;
 // how to track score    score = document.getElementById("score");
 let score = 0;
 
-// Play game
-
-
-
-
-
-
 //write a function that listens (eventListener) for clicks. Specifically when someone clicks "StartGame"
 
 //window onload
