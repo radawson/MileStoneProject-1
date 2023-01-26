@@ -1,7 +1,7 @@
 
 //DEFINE NEW VARIABLES snake, mouse, score board, etc
 // const requiredWins = 3
-const maxTurns = 20;
+
 
 
 let scoreBoard = document.querySelector(".scoreBoard")
@@ -17,12 +17,13 @@ var mouseTwo;
 var poison;
 var snake;
 
-// Gameplay
+// keep highscore
+
 
 
 
 //make our grid 10 by 10
- let width = 10;
+let width = 10;
 
 // how to track score    score = document.getElementById("score");
 let score = 0;
@@ -135,17 +136,17 @@ function newImage(url, left, bottom) {
 }
 
 function setUpPage() {
-    
+
     mouse = new Mouse("Queso", between(0, 550), between(0, 550), "dist/mouse-gray-rightSMALL.png");
     mouseTwo = new Mouse("Fresco", between(0, 550), between(0, 550), "dist/mouse-brown.png");
     poison = new Poison("GameOver", between(0, 600), between(0, 600), "dist/snakepoison.png");
     snake = new Snake("SuperLarky", between(0, 550), between(0, 550), "dist/snakegame.png");
     mainLoop();
-  
+
 }
 
 function startGame() {
-   
+
 }
 
 
@@ -185,37 +186,37 @@ function mainLoop() {
         score += 1;
         //alert("YUM! Feed me again! +1pt!")
     } else if (collisionDetection(snake, poison)) {
-       // alert("AArgh! You died");
-       score -= 1;
+        // alert("AArgh! You died");
+        score -= 1;
     } else {
         count++;
     }
-  
-    document.querySelector("#score").innerHTML=score;
+
+    document.querySelector("#score").innerHTML = score;
 }
 
 function gamePlay() {
-   if (score > 10) {
-    greeting = "YOU SAVED SIR SNAKE FROM STARVATION! YOU WON";
-    startGame();
-   }
+    if (score > 10) {
+        greeting = "YOU SAVED SIR SNAKE FROM STARVATION! YOU WON";
+        startGame();
+    }
 
-   else if (maxTurns === 20) {
-    greeting = "YOU RAN OUT OF TURNS";
-    endGame();
-   }
+    else if (maxTurns === 20) {
+        greeting = "YOU RAN OUT OF TURNS";
+        endGame();
+    }
 
     else {
-     greeting = "HOW COULD YOU LET SIR SNAKE STARVE? GAME OVER";
+        greeting = "HOW COULD YOU LET SIR SNAKE STARVE? GAME OVER";
     }
-    
+
 
 }
 
-function endGame(){
-    setUpPage.reload;
-    return;
-}
+// function endGame(){
+//     setUpPage.reload;
+//     return;
+// }
 
 // async function sleep(time) {
 // return new Promise(resolve => {
@@ -224,7 +225,65 @@ function endGame(){
 
 
 //function endGame() {
-   // alert("GAME OVER! Exceeded 20 turns");
-  //  location.reload();}
+// alert("GAME OVER! Exceeded 20 turns");
+//  location.reload();}
 
 
+const numberOfHighScore = 10;
+const highScores = "highScores";
+
+const highScoreString = localStorage.getItem(highScores);
+const highScore = JSON.parse(highScoreString) ??
+    [];
+
+const lowestScore = highScores[numberOfHighScore - 1]?.score ?? 0;
+
+
+
+function checkHighScore(score) {
+    const highScores = JSON.parse(localStorage.getItem(highScores)) ?? [];
+    const lowestScore = highScores[numberOfHighScore - 1]?.score ?? 0;
+
+    if (score > lowestScore) {
+        saveHighScore(score, highScores); // TODO
+        showHighScores(); // TODO
+    }
+}
+
+function gameOver() {
+    // setUpPage.reload();
+    checkHighScore(account.score);
+}
+
+function saveHighScore(score, highScores) {
+    const name = prompt('You got a highscore! Create Account:');
+    const newScore = { score, name };
+
+    // 1. Add to list
+    highScores.push(newScore);
+
+    // 2. Sort the list
+    highScores.sort((a, b) => b.score - a.score);
+
+    // 3. Select new list
+    highScores.splice(numberOfHighScore);
+
+    // 4. Save to local storage
+    localStorage.setItem(highScores, JSON.stringify(highScores));
+};
+
+const highScoreList = document.getElementById(highScores);
+
+// highScoreList.innerHTML = highScores.map((score) =>
+//     `<li>${score.score} - ${score.name}`
+// );
+
+
+function showHighScores() {
+    const highScores = JSON.parse(localStorage.getItem(highScores)) ?? [];
+    const highScoreList = document.getElementById(highScores);
+
+    highScoreList.innerHTML = highScores
+        .map((score) => `<li>${score.score} - ${score.name}`)
+        .join('');
+}
