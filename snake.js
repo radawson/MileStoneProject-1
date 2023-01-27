@@ -137,7 +137,7 @@ function setUpPage() {
     poison = new Poison("GameOver", between(0, 600), between(0, 600), "dist/snakepoison.png");
     snake = new Snake("SuperLarky", between(0, 550), between(0, 550), "dist/snakegame.png");
     mouse.image = newImage(mouse.url, mouse.positionX, mouse.positionY);
-    // newImage(mouseTwo.url, mouseTwo.positionX, mouseTwo.positionY);
+    mouseTwo.image = newImage(mouseTwo.url, mouseTwo.positionX, mouseTwo.positionY);
     snake.image = newImage(snake.url, snake.positionX, snake.positionY);
     poison.image = newImage(poison.url, poison.positionX, poison.positionY);
     mainLoop();
@@ -175,11 +175,9 @@ function mainLoop() {
 
     //update
     mouse.updateCoords(between(100, 550), between(0, 550));
-    //mouseTwo.updateCoords(between(100, 550), between(0, 550));
+    mouseTwo.updateCoords(between(100, 550), between(0, 550));
     poison.updateCoords(between(100, 550), between(0, 550));
     snake.updateCoords(between(100, 550), between(0, 550));
-
-   
 
     if (collisionDetection(mouse, snake)) {
         score += 1;
