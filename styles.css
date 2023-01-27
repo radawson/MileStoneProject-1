@@ -2,13 +2,26 @@ body {
     background-color: rgb(18, 17, 17);
     color: hotpink;
 }
+
+.resultsBody{
+    background-color: rgb(247, 241, 241);
+    color: rgb(26, 25, 25);
+    font-size: large;
+}
+
 fieldset {
     text-align: center;
-    border-radius: 1em;
-    border-color: rgb(103, 98, 98);
     display: inline-block;
-    
+    border-color: transparent;  
 }
+
+.resultsForm {
+    background-color: rgb(234, 219, 232);
+    padding: 1em;
+    border-radius: 2em;
+   
+}
+
 
 #createaccount-button , #restartGame , #newGame {
     border-radius: 1.5em;
@@ -26,11 +39,10 @@ fieldset {
 }
 
 #createaccount-button {
-    position: absolute;
-    left: 20px;
-    bottom: 20px;
     background-color: whitesmoke;
-
+    position: absolute;
+    right: 30px;
+    top: 30px;
 }
 
 /* .flash {
@@ -44,6 +56,7 @@ h1 {
     text-align: center;
    
 }
+
 
  /* .container {
     box-sizing: border-box;
