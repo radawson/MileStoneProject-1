@@ -1,9 +1,4 @@
 
-//DEFINE NEW VARIABLES snake, mouse, score board, etc
-// const requiredWins = 3
-
-
-
 let scoreBoard = document.querySelector(".scoreBoard")
 let grid = document.querySelector(".grid");
 let flash = document.querySelector(".flash");
@@ -11,16 +6,14 @@ let flash = document.querySelector(".flash");
 let newGame = document.getElementById(".newGame");
 let turnCount = 0;
 
-// characters
+
 var mouse;
 var mouseTwo;
 var poison;
 var snake;
 
-// keep highscore
-
-//make our grid 10 by 10
 let width = 10;
+let height = 10;
 
 // how to track score    score = document.getElementById("score");
 let score = 0;
@@ -291,3 +284,4 @@ function showHighScores() {
         .map((score) => `<li>${score.score} - ${score.name}`)
         .join('');
 }
+
